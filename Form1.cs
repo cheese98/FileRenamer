@@ -35,7 +35,7 @@ namespace FileRenamer
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            Apply.ApplyChanges();
+            Apply.ApplyChanges(listBox1.Items);
         }
 
         private void removeButton_Click(object sender, EventArgs e)
