@@ -42,5 +42,13 @@ namespace FileRenamer
         {
             listBox1.Items.RemoveAt(listBox1.SelectedIndex);
         }
+
+        private void SaveProgress(string before, string after)
+        {
+            foreach(string ss in listBox1.Items)
+            {
+                ss.Replace(before, after);
+            }
+        }
     }
 }

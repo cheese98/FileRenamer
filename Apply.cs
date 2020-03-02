@@ -9,8 +9,12 @@ namespace FileRenamer
 {
     class Apply
     {
-        public static void ApplyChanges(ListBox.ObjectCollection lists)
+        public static void ApplyChanges(ListBox.ObjectCollection original)
         {
+            foreach(string a in original)
+            {
+                System.IO.File.Move(a, "");
+            }
             // TODO : 적용 알고리즘 작성
         }
     }
