@@ -31,13 +31,14 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
+            this.removeSpaceButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(632, 391);
+            this.applyButton.Location = new System.Drawing.Point(541, 301);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(156, 47);
+            this.applyButton.Size = new System.Drawing.Size(75, 44);
             this.applyButton.TabIndex = 1;
             this.applyButton.Text = "적용";
             this.applyButton.UseVisualStyleBackColor = true;
@@ -45,7 +46,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(670, 12);
+            this.removeButton.Location = new System.Drawing.Point(541, 12);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 2;
@@ -57,22 +58,34 @@
             // 
             this.listView.AllowDrop = true;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(12, 12);
+            this.listView.Location = new System.Drawing.Point(85, 12);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(258, 336);
+            this.listView.Size = new System.Drawing.Size(440, 336);
             this.listView.TabIndex = 3;
             this.listView.UseCompatibleStateImageBehavior = false;
+            // 
+            // removeSpaceButton
+            // 
+            this.removeSpaceButton.Location = new System.Drawing.Point(541, 41);
+            this.removeSpaceButton.Name = "removeSpaceButton";
+            this.removeSpaceButton.Size = new System.Drawing.Size(75, 23);
+            this.removeSpaceButton.TabIndex = 4;
+            this.removeSpaceButton.Text = "공백 제거";
+            this.removeSpaceButton.UseVisualStyleBackColor = true;
+            this.removeSpaceButton.Click += new System.EventHandler(this.removeSpaceButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(633, 357);
+            this.Controls.Add(this.removeSpaceButton);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.applyButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
@@ -81,6 +94,7 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.Button removeSpaceButton;
     }
 }
 
