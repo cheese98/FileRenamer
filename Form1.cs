@@ -16,22 +16,38 @@ namespace FileRenamer
         public Form1()
         {
             InitializeComponent();
-            this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox1_DragDrop);
-            this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1_DragEnter);
+            this.listView.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView_DragDrop);
+            this.listView.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView_DragEnter);
         }
-        private void listBox1_DragEnter(object sender, System.Windows.Forms.DragEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            listView.View = View.Details;           //컬럼형식으로 변경
+
+            listView.FullRowSelect = true;          //Row 전체 선택
+
+            listView.Columns.Add("원래 이름", 150);        //컬럼추가
+            listView.Columns.Add("변경될 이름", 150);
+            listView.Columns.Add("파일 위치", 120);
+
+        }
+        private void listView_DragEnter(object sender, System.Windows.Forms.DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
             else
                 e.Effect = DragDropEffects.None;
         }
-        private void listBox1_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
+        private void listView_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
         {
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            int i;
-            for (i = 0; i < s.Length; i++)
-                listBox1.Items.Add(s[i]);
+            listView.BeginUpdate();
+
+            ListViewItem lvi1 = new ListViewItem(s);
+            lvi1.SubItems.Add("");
+            lvi1.SubItems.Add("");
+            lvi1.ImageIndex = 0;
+            listView.Items.Add(lvi1);
+            listView.EndUpdate();
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -54,7 +70,7 @@ namespace FileRenamer
         }
         private void removeButton_Click(object sender, EventArgs e)
         {
-            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            listView.Items.RemoveAt(listView.SelectedIndex);
         }
     }
 }
