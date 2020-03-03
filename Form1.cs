@@ -12,6 +12,7 @@ namespace FileRenamer
 {
     public partial class Form1 : Form
     {
+        private List<Tuple<string, string>> progressSave;
         public Form1()
         {
             InitializeComponent();
@@ -35,20 +36,24 @@ namespace FileRenamer
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            Apply.ApplyChanges(listBox1.Items);
+            Tuple<string, string> temp = Tuple.Create(" ", "");
+            if (temp != null) progressSave.Append(temp);
+            foreach (string before in listBox1.Items)
+            {
+                string after = before;
+                foreach (Tuple<string, string> pro in progressSave)
+                {
+                    after.Replace(pro.Item1, pro.Item2);
+                }
+
+                System.IO.File.Move(before, after);
+            }
+            // TODO : 적용 알고리즘 작성
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
             listBox1.Items.RemoveAt(listBox1.SelectedIndex);
-        }
-
-        private void SaveProgress(string before, string after)
-        {
-            foreach(string ss in listBox1.Items)
-            {
-                ss.Replace(before, after);
-            }
         }
     }
 }
