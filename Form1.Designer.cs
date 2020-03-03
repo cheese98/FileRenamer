@@ -56,7 +56,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(313, 12);
+            this.removeButton.Location = new System.Drawing.Point(670, 12);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 2;

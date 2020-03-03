@@ -12,7 +12,7 @@ namespace FileRenamer
 {
     public partial class Form1 : Form
     {
-        private List<Tuple<string, string>> progressSave;
+        private List<Tuple<string, string>> progressSave = new List<Tuple<string, string>>();
         public Form1()
         {
             InitializeComponent();
@@ -36,21 +36,22 @@ namespace FileRenamer
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            Tuple<string, string> temp = Tuple.Create(" ", "");
-            if (temp != null) progressSave.Append(temp);
-            foreach (string before in listBox1.Items)
+            foreach (string fileName in listBox1.Items)
             {
-                string after = before;
-                foreach (Tuple<string, string> pro in progressSave)
-                {
-                    after.Replace(pro.Item1, pro.Item2);
-                }
-
-                System.IO.File.Move(before, after);
+                // TODO: 폴더인지 확인하는 알고리즘 작성
+                System.IO.File.Move(fileName, doProgress(fileName));
             }
-            // TODO : 적용 알고리즘 작성
         }
 
+        private string doProgress(string fileName)
+        {
+            string temp = fileName;
+            foreach (Tuple<string, string> pro in progressSave)
+            {
+                temp = temp.Replace(pro.Item1, pro.Item2);
+            }
+            return temp;
+        }
         private void removeButton_Click(object sender, EventArgs e)
         {
             listBox1.Items.RemoveAt(listBox1.SelectedIndex);
